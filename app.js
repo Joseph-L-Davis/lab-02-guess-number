@@ -3,27 +3,52 @@
 // initialize state
 
 // set event listeners to update state and DOM
-const correctNumber = Math.floor(Math.random() * 10);
-const guess = document.getElementById('input');
-const guessesLeft = document.getElementById('guesses-left');
+
+
 const highLow = document.getElementById('highLow');
-let guesses = 3;
+let correctNumber = Math.ceil(Math.random() * 10);
+let input = document.getElementById('input');
+// Buttons
 const submit = document.getElementById('submit');
+const reset = document.getElementById('reset');
+
+let guesses = 3;
 
 submit.addEventListener('click', () => {
-    console.log(guesses);
-    console.log('clicked');
+
+    console.log(input.value);
+    console.log(correctNumber);
     guesses--;
-    if (guess < correctNumber) {
-        highLow.textContent === 'Thats too low';
-        guessesLeft.textContent = Number(guesses).value;
-    } else if (guess > correctNumber) {
-        highLow.textContent === 'Thats too high';
-        guessesLeft.textContent = Number(guesses).value;
-    } else if (guess === correctNumber) {
-        highLow.textContent === 'Nice Guess!';
-    } else if (guesses === 0) {
-        highLow.textContent = 'GameOver! You ran out of guess!';
+    if (input.value < correctNumber) {
+        highLow.textContent = 'Thats too low';
+        alert(`You have ${guesses} left!`);
+    } else if (input.value > correctNumber) {
+        highLow.textContent = 'Thats too high';
+        alert(`You have ${guesses} left!`);
+    } else {
+        alert('Nice job! Click the reset button to play again!');
+        submit.style.display = 'none';
+        reset.style.display = 'block';
+        highLow.textContent = 'Good Guess';
         return;
+    } 
+    if (guesses <= 0) {
+        highLow.textContent = 'GameOver! You ran out of guess! Click Reset to try again.';
+        submit.style.display = 'none';
+        reset.style.display = 'block';
+        return;
+        
     }
 });
+                                                          
+
+reset.addEventListener('click', () => {
+    correctNumber = Math.ceil(Math.random() * 10);
+    guesses = 3;
+    submit.style.display = 'block';
+    reset.style.display = 'none';
+    highLow.textContent = '';
+    input.value = '';
+    
+});
+
