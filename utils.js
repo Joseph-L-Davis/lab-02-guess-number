@@ -1,9 +1,14 @@
 // DOM elements
-const input = document.getElementById('input');
+// const input = document.getElementById('input');
+// let guesses = 3;
 
-const guessesLeft = document.getElementById('guesses-left');
-const highLow = document.getElementById('highLow');
 
-export function compareNumbers(guess, correctNumber) {
-    correctNumber = Math.floor(Math.random() * 10);
+
+export function compareNumbers(input, correctNumber) {
+    if (input > correctNumber) {
+        return 'HIGH';
+    } else if (input < correctNumber) {
+        return 'LOW';
+    } else return 'CORRECT';
     
+}

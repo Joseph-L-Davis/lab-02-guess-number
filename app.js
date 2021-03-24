@@ -1,5 +1,5 @@
 // import functions and grab DOM elements
-// import { compareNumbers } from './utils.js';
+import { compareNumbers } from './utils.js';
 // initialize state
 
 // set event listeners to update state and DOM
@@ -15,9 +15,6 @@ const reset = document.getElementById('reset');
 let guesses = 3;
 
 submit.addEventListener('click', () => {
-
-    console.log(input.value);
-    console.log(correctNumber);
     guesses--;
     if (input.value < correctNumber) {
         highLow.textContent = 'Thats too low';
@@ -43,12 +40,6 @@ submit.addEventListener('click', () => {
                                                           
 
 reset.addEventListener('click', () => {
-    correctNumber = Math.ceil(Math.random() * 10);
-    guesses = 3;
-    submit.style.display = 'block';
-    reset.style.display = 'none';
-    highLow.textContent = '';
-    input.value = '';
-    
+    location.reload();
 });
 
